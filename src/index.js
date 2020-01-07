@@ -58,7 +58,6 @@ async function main(id, passwd) {
             })
         }
         notice("새로운 결재가 도착하였습니다.")
-        _logger.logAlways("새로운 결재가 도착하였습니다.");
         
         MessagePrevQueue = tablelist.length;
 

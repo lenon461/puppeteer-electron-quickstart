@@ -47,6 +47,6 @@ export class Logger {
     }
 
     clean() {
-        this._htmlLogger.innerText = '새로 결제할 리스트입니다.'
+        this._htmlLogger.innerText = '현재 결제할 리스트입니다.'
     }
 }
