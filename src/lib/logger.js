@@ -1,15 +1,22 @@
 import fs from 'fs';
 export class Logger {
-    constructor() {
+    constructor(env) {
         if (process.versions.electron) { 
             this._htmlLogger = document.getElementById('logger');
         }
-
+        this.env = env || "dev"
         this._logs = [];
     }
 
     logInfo(msg) {
         this.log(msg);
+    }
+
+    logAlways(msg) {
+        let temp = this.env;
+        this.env = 'dev'
+        this.log(msg);
+        this.env = temp;
     }
 
     logError(msg) {
@@ -19,7 +26,7 @@ export class Logger {
     log(msg, style) {
         if (!msg) return;
         
-        if (this._htmlLogger) {
+        if (this._htmlLogger && this.env == "dev") {
             this._htmlLogger
             .insertAdjacentHTML('beforeend', `\n <p style="${style || 'color: black;'}">${msg}</p>`);
             // Scroll to bottom
@@ -37,5 +44,9 @@ export class Logger {
                 resolve();
             });
         });
+    }
+
+    clean() {
+        this._htmlLogger.innerText = '새로 결제할 리스트입니다.'
     }
 }
