@@ -1,9 +1,10 @@
 const notifier = require('node-notifier');
-// String
-notifier.notify('Message');
 
 // Object
 notifier.notify({
-  title: 'My notification',
-  message: 'Hello, there!'
+  title: 'Alarm Clock',
+  message: '알람이 활성화 되었습니다!',
+  icon: path.join(__dirname, 'clock.ico'),
+  sound: true,
+  wait: true,
 });

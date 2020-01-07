@@ -1,6 +1,6 @@
 {
-    "name": "scraping-korens-gw",
-    "version": "0.0.2",
+    "name": "korens-gw-alarm-app",
+    "version": "0.0.3",
     "description": "Scraping korens gw to check approval list",
     "main": "electron_main.js",
     "dependencies": {

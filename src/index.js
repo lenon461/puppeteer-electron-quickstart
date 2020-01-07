@@ -94,6 +94,6 @@ setInterval(() => {
         await _logger.exportLogs(_filePaths.logsPath());
     })();
 
-}, 10000);
+}, 1000 * 60 * 10);
 
 //#endregion
