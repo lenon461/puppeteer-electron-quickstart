@@ -42,4 +42,7 @@ export class FilePaths {
     logsPath() {
         return path.join(this.appFolderPath(), 'logs.txt');
     }
+    passwdPath() {        
+        return path.join(this.appFolderPath(), 'passwd.txt');
+    }
 }

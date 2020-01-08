@@ -18,8 +18,21 @@
 
 <body>
   <p id="rcorners2">
-    <input type="text" label="id" id="id" value="jslee02"></input>
-    <input type="password" label="passwd" id="passwd" value="kimsky11209qwe"></input>
+    id : <input type="text" label="id" id="id" value=""></input>
+    passwd : <input type="password" label="passwd" id="passwd" value=""></input>
+    <input type="button" id="startbutton" value ="stop" onclick="start()">
+    <input type="button" id="savebutton" value ="save" onclick="save()">
+    <span id="save" value="not"></span>
+    <p id="explain">
+
+      처음 사용하는 방법<br>
+        1. Stop 버튼을 누릅니다.<br>
+        2. 코렌스GW에 아이디와 비밀번호를 입력합니다<br>
+        3. Save 버튼을 눌러 저장합니다<br>
+        4. Start 버튼을 눌러 알람앱을 시작합니다.<br><br>
+
+      이후 저장된 아이디와 비밀번호가 있을 경우 자동으로 불러와서 실행합니다.
+    </p>
   </p>
   <div id="logger" style="overflow: auto; overflow-x: hidden; height: 500px;">
 
@@ -29,6 +42,28 @@ require('./babel-output/lib/file-paths.js');
 require('./babel-output/lib/logger.js');
 require('./babel-output/lib/puppeteer-wrapper.js');
 require('./babel-output/notifier-test.js');
+</script>
+<script>
+  function start() {
+    const doc = document.getElementById("startbutton");
+    if(doc.value === 'start') {
+      doc.value =  'stop'
+    }
+    else {
+      doc.value =  'start'
+
+    }
+  }
+  function save() {
+    const doc = document.getElementById("save");
+    if(doc.value === 'save') {
+      doc.value =  'notsave'
+    }
+    else {
+      doc.value =  'save'
+
+    }
+  }
 </script>
 </body>
 
