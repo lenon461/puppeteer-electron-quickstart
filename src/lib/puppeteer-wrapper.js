@@ -35,6 +35,7 @@ export class PuppeteerWrapper {
         const args = [];
         if (this._options.width) {
             args.push(`--window-size=${this._options.width},${this._options.height}`);
+            args.push(`--disable-dev-shm-usage`);
         }
 
         this._logger.logInfo("Setting up puppeteer...");

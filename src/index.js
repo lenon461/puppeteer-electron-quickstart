@@ -25,17 +25,21 @@ let MessagePrevQueue = 0;
 async function main(id, passwd) {
     try {
         const page = await _puppeteerWrapper.newPage();
-        await page.goto('http://gw.korens.com/servlet/UAct?cmd=index');
+        await Promise.all([
+            page.goto('http://gw.korens.com/servlet/UAct?cmd=index'),
+            page.waitForNavigation({ waitUntil: 'load', timeout: 10000 })
+        ]);
+        
         await page.type('body > form > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > input', id);
         await page.type('body > form > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td:nth-child(2) > input', passwd);
         // click and wait for navigation
         await Promise.all([
             page.click('body > form > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td:nth-child(3) > a'),
-            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 6500 }),
+            page.waitForNavigation({ waitUntil: 'load', timeout: 10000 }),
         ]);
         await Promise.all([
             page.click('body > table > tbody > tr > td > form > table:nth-child(3) > tbody > tr:nth-child(1) > td > table > tbody > tr > td > ul > li.approval_Tmenu > a'),
-            page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 6500 }),
+            page.waitForNavigation({ waitUntil: 'load', timeout: 10000 }),
         ]);
 
 
@@ -68,7 +72,7 @@ async function main(id, passwd) {
             }
         }
     } catch (error) {
-        _logger.logAlways("Error가 발생하였습니다. 아이디와 비밀번호를 확인해주세요")
+        _logger.logAlways("Error가 발생하였습니다. 잠시만 기다려주세요")
         _logger.logAlways(error)
     }
 
@@ -136,6 +140,6 @@ setInterval(() => {
         await _logger.exportLogs(_filePaths.logsPath());
     })();
 
-}, 1000 * 1 * 10);
+}, 3000 * 1 * 10);
 
 //#endregion
